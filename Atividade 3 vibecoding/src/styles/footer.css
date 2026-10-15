@@ -1,0 +1,80 @@
+/* ======================================================================
+   FOOTER
+   Aranha no fio, navegação, contato, bilhete e o "PETER PARKER" gigante.
+   ====================================================================== */
+
+.ft { position: relative; overflow: hidden; background: #07070d; color: #f2f0ea; padding: 190px 5vw 0; }
+.ft::before { /* continuação do horizonte avermelhado da cena anterior */
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 240px; pointer-events: none;
+  background: linear-gradient(rgba(60, 20, 30, .55), transparent);
+}
+.ft-web { position: absolute; top: 0; left: 0; width: 22vw; max-width: 330px; fill: none; stroke: rgba(255, 255, 255, .16); stroke-width: 1; pointer-events: none; }
+.ft-web--r { left: auto; right: 0; transform: scaleX(-1); }
+
+/* Aranha pendurada */
+.ft-drop-rail { position: absolute; left: 0; top: 0; width: 100%; height: 0; z-index: 5; }
+.ft-drop { position: absolute; left: 0; top: 0; width: 0; transform-origin: top center; will-change: transform; transition: translate .9s cubic-bezier(.6, 0, .3, 1); }
+.ft-thread { position: absolute; left: -.75px; top: 0; width: 1.5px; height: 128px; background: linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .55)); box-shadow: 0 0 8px rgba(255, 255, 255, .4); transition: height .9s cubic-bezier(.6, 0, .3, 1); }
+.ft-spider {
+  position: absolute; left: -24px; top: 124px; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%;
+  background: #0b0b12; border: 1.5px solid rgba(255, 255, 255, .85); box-shadow: 0 0 0 5px rgba(255, 60, 50, .2), 0 14px 30px rgba(0, 0, 0, .6);
+  transition: transform .3s var(--ease), top .9s cubic-bezier(.6, 0, .3, 1);
+}
+.ft-spider:hover { transform: scale(1.14); }
+.ft-spider svg { width: 20px; fill: #fff; }
+.ft-spider-tip {
+  position: absolute; left: 36px; top: 140px; white-space: nowrap; font-family: var(--hand); font-weight: 700; font-size: 22px; color: #ff5a4a;
+  transform: rotate(-4deg); opacity: .9;
+}
+.ft-drop-rail.is-climbing .ft-thread { height: 0; }
+.ft-drop-rail.is-climbing .ft-spider { top: -10px; }
+.ft-drop-rail.is-climbing .ft-spider-tip { opacity: 0; transition: opacity .3s; }
+
+.ft-grid { position: relative; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 60px; }
+.ft-logo { display: flex; flex-direction: column; line-height: .86; }
+.ft-logo span { font-family: var(--serif); font-size: 44px; }
+.ft-logo b { font-weight: 900; font-size: 38px; letter-spacing: -.035em; }
+.ft-brand p { margin-top: 18px; max-width: 30ch; font-size: 14px; line-height: 1.6; color: rgba(242, 240, 234, .62); }
+.ft-col { display: flex; flex-direction: column; gap: 10px; }
+.ft-col h4 { margin-bottom: 8px; font-size: 11px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: #ff4a3d; }
+.ft-col a { position: relative; width: max-content; font-family: var(--serif); font-size: 24px; color: rgba(242, 240, 234, .82); transition: color .3s, transform .4s var(--ease); }
+.ft-col a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 1px; height: 1px; background: #ff4a3d; transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+.ft-col a:hover { color: #fff; transform: translateX(6px); }
+.ft-col a:hover::after { transform: scaleX(1); }
+
+.ft-note {
+  position: relative; align-self: start; max-width: 260px; padding: 26px 22px 20px; transform: rotate(3deg);
+  font-family: var(--hand); font-weight: 700; font-size: 27px; line-height: 1.05; color: #1d3a8f;
+  background-color: #f6f3ea; background-image: repeating-linear-gradient(transparent 0 27px, rgba(70, 110, 200, .22) 27px 28px);
+  box-shadow: 0 24px 40px -18px rgba(0, 0, 0, .9);
+}
+.ft-note span { display: block; margin-top: 8px; color: #d42a24; }
+.ft-tape { position: absolute; top: -10px; left: 50%; width: 80px; height: 22px; margin-left: -40px; background: rgba(236, 226, 196, .75); transform: rotate(-3deg); }
+
+/* PETER PARKER gigante: contorno externo + pincel vermelho que segue o mouse */
+.ft-giant {
+  --mx: -400px; --my: -400px;
+  position: relative; margin: 0 -1vw; user-select: none; white-space: nowrap; line-height: .8; text-align: center;
+  font-weight: 900; letter-spacing: -.045em; font-size: clamp(60px, 13.4vw, 280px);
+}
+.ft-giant span { display: block; }
+.ft-giant-line { color: #fff; filter: url(#ftOutline); }
+.ft-giant-red {
+  position: absolute; inset: 0; color: transparent;
+  background: radial-gradient(circle 230px at var(--mx) var(--my), #e3262b 0, rgba(227, 38, 43, .9) 45%, rgba(227, 38, 43, 0) 100%);
+  -webkit-background-clip: text; background-clip: text;
+}
+.ft-bar {
+  position: relative; display: flex; justify-content: space-between; gap: 40px; padding: 26px 0 28px; margin-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, .14); font-size: 11.5px; line-height: 1.6; color: rgba(242, 240, 234, .5);
+}
+.ft-bar span:last-child { max-width: 62ch; text-align: right; }
+
+@media (max-aspect-ratio: 4/5), (max-width: 860px) {
+  .ft { padding-top: 160px; }
+  .ft-grid { grid-template-columns: 1fr 1fr; }
+  .ft-brand { grid-column: 1 / -1; }
+  .ft-note { grid-column: 1 / -1; }
+  .ft-bar { flex-direction: column; gap: 10px; }
+  .ft-bar span:last-child { text-align: left; }
+}

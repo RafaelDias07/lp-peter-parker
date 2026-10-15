@@ -1,0 +1,9 @@
+/* Estilos da LP, um arquivo por seção (na ordem em que aparecem na página). */
+@import './base.css';
+@import './intro.css';
+@import './home.css';
+@import './powers.css';
+@import './gazette.css';
+@import './vida.css';
+@import './finale.css';
+@import './footer.css';

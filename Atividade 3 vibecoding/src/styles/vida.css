@@ -1,0 +1,146 @@
+/* ======================================================================
+   04 · A VIDA DUPLA
+   Folha do dia (caderno bege) rasgada sobre a página preta da noite.
+   ====================================================================== */
+
+.vida { position: relative; height: 480vh; background: #0d0a09; }
+.vida-stage { --x: 50%; position: sticky; top: 0; height: 100vh; overflow: hidden; background: #070913; }
+
+/* Noite (embaixo) */
+.vd-night { position: absolute; inset: 0; color: #f3eee4; }
+.vd-night-sky { position: absolute; inset: 0; opacity: 0; transition: opacity 1s; }
+.vd-night-sky.is-on { opacity: 1; }
+.vd-night-sky--0 { background: radial-gradient(ellipse at 80% 70%, rgba(255, 58, 48, .16), transparent 55%), #0b1020; }
+.vd-night-sky--1 { background: radial-gradient(ellipse at 70% 60%, rgba(90, 120, 255, .16), transparent 55%), #0a0e1c; }
+.vd-night-sky--2 { background: radial-gradient(ellipse at 60% 100%, rgba(255, 100, 90, .26), transparent 60%), linear-gradient(#1a1030, #0c0a18 70%); }
+.vd-night-sky--3 { background: radial-gradient(ellipse at 80% 70%, rgba(255, 58, 48, .2), transparent 55%), #05060b; }
+.vd-night-grid { /* mesma folha quadriculada, em papel preto e traço claro */
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .06) 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(rgba(255, 255, 255, .06) 0 1px, transparent 1px 30px);
+}
+.vd-night::after { /* textura de papel */
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .6 0 0 0 0 .6 0 0 0 0 .7 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.vd-moon {
+  position: absolute; right: 7vw; top: 7vh; width: 54px; height: 54px; border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .8); box-shadow: 0 0 40px rgba(255, 255, 255, .22), inset -14px -4px 0 rgba(255, 255, 255, .55);
+  clip-path: circle(50%);
+}
+.vd-city { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 24vh; pointer-events: none; }
+.vd-city rect { fill: #05060d; stroke: rgba(255, 255, 255, .42); stroke-width: 1.2; }
+.vd-city .vd-win { fill: #ffd890; stroke: none; opacity: .85; }
+
+/* Dia (folha de caderno por cima) */
+.vd-day-wrap { position: absolute; inset: 0; filter: drop-shadow(8px 0 16px rgba(0, 0, 0, .6)); }
+.vd-day { position: absolute; inset: 0; color: #1c1915; will-change: clip-path; }
+.vd-day-sky { position: absolute; inset: 0; opacity: 0; transition: opacity 1s; }
+.vd-day-sky.is-on { opacity: 1; }
+.vd-day-sky--0 { background: radial-gradient(ellipse at 20% 0%, #fff4d6 0%, transparent 60%), #efe4c8; }
+.vd-day-sky--1 { background: radial-gradient(ellipse at 40% 0%, #ffffff 0%, transparent 60%), #efece2; }
+.vd-day-sky--2 { background: radial-gradient(ellipse at 10% 100%, #ffb98a 0%, transparent 65%), #efd3b1; }
+.vd-day-sky--3 { background: radial-gradient(ellipse at 30% 30%, #f0d98f 0%, transparent 60%), #c9bc9a; }
+.vd-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(60, 100, 190, .13) 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(rgba(60, 100, 190, .13) 0 1px, transparent 1px 30px);
+}
+
+/* Textos de cada lado */
+.vd-copy { position: absolute; top: 30vh; width: 29vw; animation: vd-rise .8s var(--ease) both; }
+.vd-copy--day { left: 5vw; }
+.vd-copy--night { right: 5vw; text-align: right; }
+@keyframes vd-rise { from { opacity: 0; transform: translateY(24px); filter: blur(6px); } }
+.vd-who { font-family: var(--hand); font-size: 24px; font-weight: 700; }
+.vd-copy--day .vd-who { color: #d42a24; }
+.vd-copy--night .vd-who { color: #ff5a4a; }
+.vd-copy h3 {
+  margin: 4px 0 12px; font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; line-height: .95;
+  font-size: clamp(36px, 4.4vw, 74px);
+}
+.vd-copy p { font-family: var(--hand); font-weight: 500; font-size: clamp(22px, 1.8vw, 30px); line-height: 1.12; }
+.vd-copy--day p { color: #1d3a8f; }
+.vd-copy--night p { color: rgba(243, 238, 228, .82); margin-left: auto; max-width: 24ch; }
+.vd-copy--day p { max-width: 24ch; }
+
+/* Rabiscos */
+.vd-doodle { display: block; width: min(100%, 300px); margin-top: 20px; overflow: visible; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.2; }
+.vd-copy--night .vd-doodle { margin-left: auto; }
+.vd-doodle--day { stroke: #1d3a8f; }
+.vd-doodle--day .paperfill { fill: rgba(255, 252, 244, .85); }
+.vd-doodle--day .note-fill { fill: #f6e58c; }
+.vd-doodle--day .red, .vd-doodle--day text.red { stroke: #d42a24; fill: none; }
+.vd-doodle--day text.red { fill: #d42a24; stroke: none; }
+.vd-doodle--night { stroke: rgba(245, 245, 255, .85); }
+.vd-doodle--night .red { stroke: #ff4a3d; }
+.vd-doodle--night .blue { stroke: #5aa0ff; }
+.vd-doodle--night .lens { fill: rgba(245, 245, 255, .85); stroke: none; }
+.vd-doodle--night .fill-solid { fill: #fff; stroke: none; }
+.vd-doodle--night .dash { stroke-dasharray: 3 8; }
+.vd-doodle--night .web { stroke: #fff; }
+.vd-doodle--night .moon { stroke: rgba(245, 245, 255, .5); }
+.vd-doodle--night .win { stroke: #ffd890; stroke-width: 4; }
+.vd-doodle text { stroke: none; font-family: var(--hand); font-weight: 700; font-size: 22px; fill: #1d3a8f; }
+.vd-doodle text.small { font-size: 17px; }
+.vd-doodle--night text { fill: rgba(245, 245, 255, .85); }
+.vd-doodle path, .vd-doodle circle, .vd-doodle rect, .vd-doodle ellipse { stroke-dasharray: 500; stroke-dashoffset: 500; animation: vd-draw 1.4s var(--ease) .25s forwards; }
+.vd-doodle--night .dash { stroke-dasharray: 3 8; stroke-dashoffset: 0; animation: none; }
+@keyframes vd-draw { to { stroke-dashoffset: 0; } }
+
+/* Puxador: aranha pendurada no fio */
+.vd-thread {
+  position: absolute; left: var(--x); top: 0; width: 1.5px; height: 46vh; z-index: 12; margin-left: -.75px;
+  background: linear-gradient(rgba(255, 255, 255, .95), rgba(255, 255, 255, .6));
+  box-shadow: 0 0 8px rgba(255, 255, 255, .5); pointer-events: none;
+}
+.vd-handle {
+  position: absolute; left: var(--x); top: 46vh; z-index: 13; width: 58px; height: 58px; margin: 0 0 0 -29px;
+  display: grid; place-items: center; border-radius: 50%; touch-action: none; cursor: grab;
+  background: #0b0b12; border: 1.5px solid rgba(255, 255, 255, .85);
+  box-shadow: 0 0 0 5px rgba(255, 60, 50, .22), 0 12px 30px rgba(0, 0, 0, .6);
+  transition: transform .3s var(--ease);
+}
+.vd-handle:hover, .vd-handle:active { transform: scale(1.1); }
+.vd-handle svg { width: 24px; fill: #fff; }
+.vd-hint {
+  position: absolute; left: var(--x); top: calc(46vh + 70px); z-index: 13; transform: translateX(-50%) rotate(-3deg);
+  font-family: var(--hand); font-size: 22px; font-weight: 700; color: #fff; white-space: nowrap; mix-blend-mode: difference;
+  transition: opacity .6s;
+}
+.vd-hint.is-off { opacity: 0; }
+
+/* Relógio central */
+.vd-clock {
+  position: absolute; left: 0; right: 0; top: 5vh; z-index: 14; display: flex; justify-content: center; align-items: flex-start; gap: clamp(20px, 5vw, 80px);
+  color: #fff; mix-blend-mode: difference; pointer-events: none;
+}
+.vd-clock-side { margin-top: 1.4vw; font-family: var(--hand); font-size: 24px; font-weight: 700; opacity: .85; }
+.vd-clock-time { text-align: center; animation: vd-time .7s var(--ease) both; }
+.vd-clock-time b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(60px, 8.4vw, 140px); line-height: .9; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.vd-clock-time i { font-family: var(--hand); font-style: normal; font-size: 26px; }
+@keyframes vd-time { from { opacity: 0; transform: translateY(18px) scale(.96); } }
+
+.vd-ticks {
+  position: absolute; left: 50%; bottom: 3.5vh; z-index: 14; transform: translateX(-50%);
+  display: flex; gap: clamp(14px, 2.4vw, 34px); padding: 4px 26px 2px;
+  background: rgba(10, 10, 16, .78); border: 1px solid rgba(255, 255, 255, .2); border-radius: 99px;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.vd-ticks button { position: relative; padding: 2px 4px 7px; font-family: var(--hand); font-size: 25px; font-weight: 700; color: rgba(255, 255, 255, .55); transition: color .3s; }
+.vd-ticks button:hover { color: #fff; }
+.vd-ticks button.is-on { color: #fff; }
+.vd-ticks button::after {
+  content: ''; position: absolute; left: 4px; right: 4px; bottom: 3px; height: 3px; border-radius: 2px; background: #ff4a3d; transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease);
+}
+.vd-ticks button.is-on::after { transform: scaleX(1); }
+
+@media (max-aspect-ratio: 4/5) {
+  .vd-copy { top: 26vh; width: 40vw; }
+  .vd-copy h3 { font-size: 30px; }
+  .vd-copy p { font-size: 18px; }
+  .vd-doodle { display: none; }
+  .vd-clock-side { display: none; }
+}
