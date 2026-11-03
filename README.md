@@ -1,77 +1,99 @@
-# Front-end Design: CP5
+<p align="center">
+  <img src="./docs/imagens/logo-aranha.png" alt="Logo da aranha do Homem-Aranha" width="160" />
+</p>
 
-**Aluno:** Rafael Dias Fontes
-**RM:** 570504
-**Turma:** 1ESPW
-**Curso:** FIAP, disciplina de Front-end Design
+<h1 align="center">LP Peter Parker</h1>
 
-Repositório com as três atividades do CP5. Cada uma está na sua própria pasta, com o código e os prints.
-
-## Atividades
-
-| # | Pasta | Tema | Tecnologia |
-|---|-------|------|------------|
-| 1 | [Atividade 1 bootstrap](./Atividade%201%20bootstrap) | Página de café de origem | HTML, CSS e Bootstrap 5.3 |
-| 2 | [Atividade 2 Tailwind](./Atividade%202%20Tailwind) | Site "Fio & Prensa" (ateliê de livros) | HTML e Tailwind CSS 4 |
-| 3 | [Atividade 3 vibecoding](./Atividade%203%20vibecoding) | Landing page animada do Peter Parker | React, Vite e IA |
+<p align="center">
+  Landing page animada e guiada pela rolagem, sobre o Peter Parker e o Homem-Aranha.<br />
+  Atividade 3 (Vibecoding), Front-end Design, FIAP. Projeto acadêmico.
+</p>
 
 ---
 
-### Atividade 1: Bootstrap
+## O que é
 
-Página estática sobre café de origem, feita só com os componentes e o grid do Bootstrap.
+Uma página única que conta uma história enquanto você rola ou move o mouse. Feita com **React + Vite**, só JavaScript e CSS, sem bibliotecas de animação: tudo é animado com `requestAnimationFrame`.
 
-- Seção principal com título e imagem.
-- Carrossel com três imagens (componente do Bootstrap).
-- Perguntas frequentes em acordeão.
-- Bootstrap carregado por CDN, sem instalar nada.
+## As telas
 
-**Como ver:** abra o `index.html` da pasta no navegador. Os prints ficam em `prints da atividade/`.
+| # | Seção | O que acontece |
+|---|-------|----------------|
+| 1 | **Intro e Home** | Tela vermelha, uma aranha cresce e revela o Peter. Onde o mouse passa, o rosto vira a máscara, o corpo vira o traje e o nome muda de "PETER PARKER" para "HOMEM ARANHA". |
+| 2 | **Poderes** | Um olho se abre, a câmera mergulha na cidade e o caderno do Peter mostra as anotações. |
+| 3 | **Queens à noite** | Capas de jornal que se sobrepõem, uma por dia, com título de máquina de escrever e folha de contatos. |
+| 4 | **A vida dupla** | Caderno com rabiscos: a rotina de Peter dividida entre o dia e a noite, com um despertador digital. |
+| 5 | **Boa noite, Queens** | Rádio com scanner e display de LCD, holofote e nuvens. |
+| 6 | **Footer** | Links de contato (LinkedIn e GitHub) e botão para voltar ao topo. |
 
-### Atividade 2: Tailwind
+## Tecnologias
 
-Site de um ateliê de livros artesanais, o "Fio & Prensa", estilizado só com classes utilitárias do Tailwind.
+**Linguagens**
 
-- Seção de abertura com título e chamada.
-- "O ofício, em quatro etapas".
-- "Peças recentes".
-- "Visite o ateliê".
-- Tailwind carregado por CDN (`@tailwindcss/browser@4`), sem instalar nada.
+- **JavaScript (JSX):** toda a lógica e os componentes. Sem TypeScript.
+- **CSS:** estilos e animações, sem Tailwind nem pré-processadores.
+- **HTML:** só o `index.html` base, o resto é gerado pelo React.
+- **SVG e Canvas:** a aranha, a teia, os rabiscos, o pincel e as partículas.
 
-**Como ver:** abra o `index.html` da pasta no navegador. Os prints ficam em `prints/`.
+**Dependências**
 
-### Atividade 3: Vibecoding
+| Pacote | Versão | Para que serve |
+|--------|--------|----------------|
+| `react` | ^19.3.0 | Interface em componentes |
+| `react-dom` | ^19.3.0 | Renderiza o React no navegador |
+| `vite` | ^6.4.4 | Servidor de desenvolvimento e build (dev) |
+| `@vitejs/plugin-react` | ^4.7.0 | Suporte a JSX no Vite (dev) |
 
-Landing page narrativa sobre o Peter Parker e o Homem-Aranha, guiada pela rolagem e toda animada. Foi feita em parceria com ferramentas de IA (vibecoding), com um rascunho das telas no Figma.
+Não há biblioteca de animação: tudo é feito com `requestAnimationFrame`, CSS e Canvas.
 
-- Intro com a aranha crescendo e o pincel que veste a máscara no rosto do Peter.
-- Seções Poderes, Queens à noite, A vida dupla e Boa noite, Queens.
-- React 19 e Vite 6, só JavaScript e CSS, sem biblioteca de animação.
-- Documentação própria: referências usadas e como a IA foi usada.
+## Como rodar
 
-**Como rodar:**
+Precisa do [Node.js](https://nodejs.org) instalado.
 
 ```bash
-cd "Atividade 3 vibecoding"
 npm install
 npm run dev
 ```
 
-Mais detalhes no [README da atividade](./Atividade%203%20vibecoding/README.md), no [AGENTS.md](./Atividade%203%20vibecoding/AGENTS.md), nas [referências](./Atividade%203%20vibecoding/docs/references/references.md) e no [uso de IA](./Atividade%203%20vibecoding/docs/Prompts/uso-de-ia.md).
+Abra o endereço que aparecer no terminal (normalmente `http://localhost:5173`).
 
----
+Para gerar a versão final:
 
-## Estrutura do repositório
+```bash
+npm run build
+npm run preview
+```
+
+## Estrutura
 
 ```
-CP5-Frontend/
-  Atividade 1 bootstrap/    index.html, style.css, imagens/, prints
-  Atividade 2 Tailwind/     index.html, prints
-  Atividade 3 vibecoding/   projeto React + Vite com docs/
-  README.md                 este arquivo
+src/
+  App.jsx          fluxo geral: intro, home e seções
+  components/      uma seção ou peça por arquivo
+  lib/             alinhamento da foto, logo vetorizado, rolagem
+  styles/          CSS dividido por seção
+public/assets/     imagens (Peter, máscara, mergulho)
+docs/
+  figma/           rascunho das telas no Figma
+  references/      referências de componentes e sites
+  Prompts/         como a IA foi usada
+AGENTS.md          guia detalhado para quem for mexer no código
 ```
+
+Principais arquivos:
+
+- `src/components/SpiderIntro.jsx`: animação de entrada (clip-path no formato da aranha).
+- `src/components/PaintCanvas.jsx`: pincel, máscara, traje e nome revelados.
+- `src/components/HomeUI.jsx`: header, menu e detalhes da home.
+- `src/lib/align.js`: alinhamento foto e máscara. Para trocar a foto, atualize `w`, `h` e `eyes`.
+- `src/styles/`: um CSS por seção (`base`, `intro`, `home`, `powers`, `gazette`, `vida`, `finale`, `footer`), importados em ordem por `index.css`.
+
+## Documentação
+
+- [`AGENTS.md`](./AGENTS.md): arquitetura, regras de design e cuidados com desempenho.
+- [`docs/references/references.md`](./docs/references/references.md): referências usadas.
+- [`docs/Prompts/uso-de-ia.md`](./docs/Prompts/uso-de-ia.md): como usei IA no projeto.
 
 ## Autor
 
-Rafael Dias Fontes, RM 570504, turma 1ESPW.
-[LinkedIn](https://www.linkedin.com/in/rafael-dias-fontes-2a947b3a7/) · [GitHub](https://github.com/RafaelDias07/CP5-Frontend)
+Rafael Dias, [LinkedIn](https://www.linkedin.com/in/rafael-dias-fontes-2a947b3a7/) · [GitHub](https://github.com/RafaelDias07/CP5-Frontend)
